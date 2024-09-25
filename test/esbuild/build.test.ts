@@ -13,7 +13,7 @@ describe("build", () => {
     });
     const files: string[] = readdirSync(out);
     expect(files).toHaveLength(2);
-    expect(files[0]).toEqual("decorators.bundle.gen.js");
-    expect(files[1]).toEqual("my-class.gen.mjs");
+    expect(files[0]).toEqual("decorators.bundle.js");
+    expect(files[1]).toEqual("my-class.mjs");
   });
 });
