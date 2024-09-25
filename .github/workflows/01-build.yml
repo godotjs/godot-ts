@@ -1,0 +1,25 @@
+---
+name: Build Workflow
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🔄 Init Cache
+        uses: nmerget/npm-cache-action@main
+
+      - name: 🔨 Build
+        run: npm run build
+
+      - name: ⏫ Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: dist
