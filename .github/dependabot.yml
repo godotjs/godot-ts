@@ -21,3 +21,6 @@ updates:
           - "major"
           - "minor"
           - "patch"
+    ignore:
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
