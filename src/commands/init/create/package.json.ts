@@ -5,11 +5,11 @@ export const getPackageJson = (name: string, version: string) =>
       version: "0.0.0",
       type: "module",
       scripts: {
-        build: "@godot-js/ts build",
-        dev: "npm-run-all build:* -p watch:* open-editor",
+        build: "godot-ts build",
+        dev: "npm-run-all build -p watch open-editor",
         "open-editor": "godot -e --path .",
         start: "godot",
-        watch: "@godot-js/ts watch",
+        watch: "godot-ts watch",
       },
       devDependencies: {
         "@godot-js/ts": `^${version}`,

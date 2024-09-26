@@ -1,5 +1,5 @@
 {
-  "name": "@godot-js/ts",
+  "name": "@godot-js/godot-ts",
   "version": "0.0.0",
   "description": "Tool for using GodotJS with TypeScript",
   "type": "module",
@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "bin": {
-    "@godot-js/ts": "dist/index.js"
+    "@godot-js/godot-ts": "dist/index.js"
   },
   "main": "index.js",
   "files": [

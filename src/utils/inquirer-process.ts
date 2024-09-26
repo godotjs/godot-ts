@@ -11,7 +11,10 @@ export const startInquirerProcess = async <T>(
 
   for (const option of optionsWithInquirer) {
     const { inquirer } = option;
-    if (inquirer.input && !config[option.name]) {
+    if (
+      inquirer.input &&
+      (!config[option.name] || config[option.name] === option.defaultValue)
+    ) {
       config[option.name] = await input({
         message: inquirer.input.message,
         default: option.defaultValue?.toString(),

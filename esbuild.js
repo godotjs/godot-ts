@@ -7,5 +7,6 @@ await build({
   platform: "node",
   format: "esm",
   packages: "external",
-  //minify: true,
+  external: ["package.json"],
+  minify: true,
 });
