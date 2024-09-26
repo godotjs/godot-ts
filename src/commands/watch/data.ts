@@ -1,9 +1,10 @@
 import { ProgramOptionsType } from "../../data";
+import { DryConfigType, dryRunOption } from "../../utils/shared";
 
-export type WatchTypes = {
+export type WatchConfigType = {
   src?: string;
   out?: string;
-};
+} & DryConfigType;
 
 export const watchOptions: ProgramOptionsType[] = [
   {
@@ -13,7 +14,8 @@ export const watchOptions: ProgramOptionsType[] = [
   },
   {
     name: "out",
-    defaultValue: "./scripts",
+    defaultValue: "./scripts/js/generated",
     description: "Relative path where *.ts files are written",
   },
+  dryRunOption,
 ];

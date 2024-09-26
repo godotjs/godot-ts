@@ -14,6 +14,8 @@ jobs:
     uses: ./.github/workflows/01-build.yml
     needs: [init]
     secrets: inherit
+    with:
+      release: false
 
   lint:
     uses: ./.github/workflows/01-lint.yml

@@ -1,9 +1,9 @@
 import { ProgramOptionsType } from "../../data";
-import { watchOptions, WatchTypes } from "../watch/data";
+import { WatchConfigType, watchOptions } from "../watch/data";
 
-export type BuildTypes = {
+export type BuildConfigType = {
   minifyClasses?: boolean;
-} & WatchTypes;
+} & WatchConfigType;
 
 export const buildOptions: ProgramOptionsType[] = [
   ...watchOptions,

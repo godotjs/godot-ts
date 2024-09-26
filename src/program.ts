@@ -12,7 +12,6 @@ const startProgram = (name: string, description: string) => {
       pCommand.description(command.description);
     }
 
-
     if (command.options) {
       for (const option of command.options) {
         const short =
@@ -21,11 +20,13 @@ const startProgram = (name: string, description: string) => {
               ? option.short
               : `-${option.short}`)) ||
           `-${option.name.charAt(0)}`;
+
+        const isBoolean = typeof option.defaultValue == "boolean";
+        const pre = option.array ? "[" : isBoolean ? "" : "<";
+        const post = option.array ? "s...]" : isBoolean ? "" : ">";
+
         const long =
-          option.long ||
-          `--${option.name} ${option.array ? "[" : "<"}${option.name}${
-            option.array ? "s...]" : ">"
-          }`;
+          option.long || `--${option.name} ${pre}${option.name}${post}`;
 
         pCommand.option(
           `${short}, ${long}`,
