@@ -25,13 +25,18 @@ jobs:
         run: echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
         id: extractTag
 
-      - name: 🔨 Build
+      - name: 🔨 Build release
+        if: ${{ inputs.release }}
         env:
-          TAG: ${{ steps.extractTag.outputs.tag || '0.0.0' }}
+          TAG: ${{ steps.extractTag.outputs.tag }}
         run: |
           SEMVER_VERSION=$(npx find-versions-cli "$TAG")
           npm version --no-git-tag-version "$SEMVER_VERSION"
           npm run build
+
+      - name: 🔨 Build
+        if: ${{ !inputs.release }}
+        run: npm run build
 
       - name: ⏫ Upload build
         uses: actions/upload-artifact@v4
