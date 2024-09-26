@@ -15,3 +15,4 @@ yarn.lock
 ## Genrated files
 test/**/*.mjs
 test/**/*.js
+/src/commands/init/generated.ts

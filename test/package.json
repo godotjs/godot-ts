@@ -1,0 +1,9 @@
+{
+  "name": "test",
+  "scripts": {
+    "cli:help": "tsx ../src/cli.ts --help",
+    "cli:init": "tsx ../src/cli.ts init --name my-game --dry",
+    "cli:build": "tsx ../src/cli.ts build --src ./esbuild\\src\\ --out ./esbuild\\scripts --dry",
+    "cli:watch": "tsx ../src/cli.ts watch --src ./esbuild/src/ --out ./esbuild/scripts --dry"
+  }
+}

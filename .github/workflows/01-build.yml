@@ -3,6 +3,10 @@ name: Build Workflow
 
 on:
   workflow_call:
+    inputs:
+      release:
+        required: true
+        type: boolean
 
 jobs:
   build:
@@ -15,8 +19,19 @@ jobs:
       - name: 🔄 Init Cache
         uses: nmerget/npm-cache-action@main
 
+      - name: 🔀 Extract tag
+        if: ${{ inputs.release }}
+        shell: bash
+        run: echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        id: extractTag
+
       - name: 🔨 Build
-        run: npm run build
+        env:
+          TAG: ${{ steps.extractTag.outputs.tag || '0.0.0' }}
+        run: |
+          SEMVER_VERSION=$(npx find-versions-cli "$TAG")
+          npm version --no-git-tag-version "$SEMVER_VERSION"
+          npm run build
 
       - name: ⏫ Upload build
         uses: actions/upload-artifact@v4
