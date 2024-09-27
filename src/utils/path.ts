@@ -18,5 +18,9 @@ export const stripRelativePath = (path?: string): string => {
     return path.slice(1, path.length);
   }
 
+  if (!path.startsWith("/")) {
+    return `/${path}`;
+  }
+
   return path;
 };
