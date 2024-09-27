@@ -13,7 +13,7 @@ export const getPackageJson = (
         build: "godot-ts build",
         dev: "npm-run-all build -p watch open-editor",
         "open-editor": "godot -e --path .",
-        start: "godot",
+        start: "npm run build && godot",
         watch: "godot-ts watch",
       },
       devDependencies: {

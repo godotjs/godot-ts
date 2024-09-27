@@ -12,9 +12,6 @@
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "paths": {
-      "decorators": ["./src/decorators.bundle"]
-    }
+    "resolveJsonModule": true
   }
 }
