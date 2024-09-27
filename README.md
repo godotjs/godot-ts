@@ -13,15 +13,16 @@ Tool for using [GodotJS](https://github.com/godotjs/javascript) with TypeScript.
 2. Rename the downloaded file to `godot` and [add Godot to your path](https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html#path)
 3. Open a terminal
 4. Test if you can use Godot via CLI and run `godot --version`
-5. Run `npx -y @godot-js/ts init` - new project will be crated at your current terminal path
+5. Run `npx -y @godot-js/godot-ts init` - new project will be crated at your current terminal path
 6. Follow the prompts
+7. After Godot editor opens click on `Project/Reload current project` to see all generated files
 
 ## API
 
 ### Help
 
 ```shell
-@godot-js/ts --help
+@godot-js/godot-ts --help
 ```
 
 ### Init
@@ -29,7 +30,7 @@ Tool for using [GodotJS](https://github.com/godotjs/javascript) with TypeScript.
 Creates a new GodotJS project with TypeScript support
 
 ```shell
-@godot-js/ts init
+@godot-js/godot-ts init
 ```
 
 ### Build
@@ -37,7 +38,7 @@ Creates a new GodotJS project with TypeScript support
 Build `*.ts` files once and minified
 
 ```shell
-@godot-js/ts build
+@godot-js/godot-ts build
 ```
 
 ### Watch
@@ -45,5 +46,5 @@ Build `*.ts` files once and minified
 Watching for changes in `*.ts` files and rebuilding on need
 
 ```shell
-@godot-js/ts watch
+@godot-js/godot-ts watch
 ```

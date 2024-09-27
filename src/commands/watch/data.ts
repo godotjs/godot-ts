@@ -1,10 +1,10 @@
 import { ProgramOptionsType } from "../../data";
-import { DryConfigType, dryRunOption } from "../../utils/shared";
+import { DryConfigType, dryRunOption, OutConfigType } from "../../utils/shared";
 
 export type WatchConfigType = {
   src?: string;
-  out?: string;
-} & DryConfigType;
+} & DryConfigType &
+  OutConfigType;
 
 export const watchOptions: ProgramOptionsType[] = [
   {

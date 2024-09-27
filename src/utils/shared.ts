@@ -1,5 +1,9 @@
 import { ProgramOptionsType } from "../data";
 
+export type OutConfigType = {
+  out?: string;
+};
+
 export type DryConfigType = {
   dry?: boolean;
 };

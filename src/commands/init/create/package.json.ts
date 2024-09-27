@@ -1,20 +1,25 @@
-export const getPackageJson = (name: string, version: string) =>
+export const getPackageJson = (
+  name: string,
+  version: string,
+  npmRunAll: string,
+  typescript: string,
+) =>
   JSON.stringify(
     {
       name: `${name}`,
       version: "0.0.0",
       type: "module",
       scripts: {
-        build: "@godot-js/ts build",
-        dev: "npm-run-all build:* -p watch:* open-editor",
+        build: "godot-ts build",
+        dev: "npm-run-all build -p watch open-editor",
         "open-editor": "godot -e --path .",
         start: "godot",
-        watch: "@godot-js/ts watch",
+        watch: "godot-ts watch",
       },
       devDependencies: {
         "@godot-js/ts": `^${version}`,
-        "npm-run-all": "^4.1.5",
-        typescript: "^5.6.2",
+        "npm-run-all": `^${npmRunAll}`,
+        typescript: `^${typescript}`,
       },
       types: "./godot.d.ts",
     },
