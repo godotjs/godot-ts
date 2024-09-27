@@ -17,7 +17,7 @@ export const getPackageJson = (
         watch: "godot-ts watch",
       },
       devDependencies: {
-        "@godot-js/ts": `^${version}`,
+        "@godot-js/godot-ts": `^${version}`,
         "npm-run-all": `${npmRunAll}`,
         typescript: `${typescript}`,
       },
