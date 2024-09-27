@@ -18,8 +18,8 @@ export const getPackageJson = (
       },
       devDependencies: {
         "@godot-js/ts": `^${version}`,
-        "npm-run-all": `^${npmRunAll}`,
-        typescript: `^${typescript}`,
+        "npm-run-all": `${npmRunAll}`,
+        typescript: `${typescript}`,
       },
       types: "./godot.d.ts",
     },
