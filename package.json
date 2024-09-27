@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "prebuild": "tsx src/utils/prepare.ts",
-    "posttest": "tsx src/utils/prepare.ts",
+    "pretest": "tsx src/utils/prepare.ts",
     "build": "node esbuild.js",
     "lint": "eslint *.ts",
     "prepare": "husky",
