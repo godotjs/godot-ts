@@ -15,6 +15,7 @@ Tool for using [GodotJS](https://github.com/godotjs/javascript) with TypeScript.
 4. Test if you can use Godot via CLI and run `godot --version`
 5. Run `npx -y @godot-js/godot-ts init` - new project will be crated at your current terminal path
 6. Follow the prompts
+7. After Godot editor opens click on `Project/Reload current project` to see all generated files
 
 ## API
 

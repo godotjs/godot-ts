@@ -1,6 +1,7 @@
 import {
   DECORATORS_FILE,
   EXAMPLE_FILE,
+  GITIGNORE,
   GODOT_D_FILE,
   GODOT_PROJECT_FILE,
   InitConfigType,
@@ -12,28 +13,58 @@ import { startInquirerProcess } from "../../utils/inquirer-process";
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from "fs";
 import { getGodotProject } from "./create/project.godot";
 import { getPackageJson } from "./create/package.json";
-import { version } from "package.json";
+import { version, devDependencies } from "package.json";
 
 import {
+  _GITIGNORE,
   DECORATORS_BUNDLE_TS,
   EXAMPLE_TS,
   GODOT_D_TS,
   TSCONFIG_JSON,
 } from "./generated";
+import { rimrafSync } from "rimraf";
+
+const writeIgnoreFolders = (projectDir: string) => {
+  const srcPath = `${projectDir}/src`;
+  if (!existsSync(srcPath)) {
+    mkdirSync(srcPath);
+  }
+  const gdIgnorePath = `${srcPath}/.gdignore`;
+  if (!existsSync(gdIgnorePath)) {
+    writeFileSync(gdIgnorePath, "");
+  }
+  const nodeModulesPath = `${projectDir}/node_modules`;
+  if (!existsSync(nodeModulesPath)) {
+    mkdirSync(nodeModulesPath);
+  }
+  const gdIgnoreNodeModulesPath = `${nodeModulesPath}/.gdignore`;
+  if (!existsSync(gdIgnoreNodeModulesPath)) {
+    writeFileSync(gdIgnoreNodeModulesPath, "");
+  }
+};
 
 const generateFiles = ({
   createNewProject,
   name,
+  root,
+  forceDelete,
   filesToCreate,
 }: {
   createNewProject: boolean;
   name: string;
+  root: string;
+  forceDelete: boolean;
   filesToCreate: Record<string, string>;
 }) => {
-  let projectDir = `./${name}`;
+  let projectDir = `${root}/${name}`;
   if (createNewProject) {
     if (existsSync(projectDir)) {
-      throw Error(`${projectDir} exists already`);
+      if (forceDelete) {
+        rimrafSync(projectDir);
+        mkdirSync(projectDir);
+      } else {
+        throw Error(`${projectDir} exists already`);
+      }
     } else {
       mkdirSync(projectDir);
     }
@@ -41,10 +72,7 @@ const generateFiles = ({
     projectDir = ".";
   }
 
-  const srcPath = `${projectDir}/src`;
-  if (!existsSync(srcPath)) {
-    mkdirSync(srcPath);
-  }
+  writeIgnoreFolders(projectDir);
 
   Object.entries(filesToCreate).forEach(([fileName, content]) => {
     try {
@@ -65,15 +93,19 @@ const generateFiles = ({
   console.log("npm run dev");
 };
 
+const byteArrayAsString = (array: number[]): string =>
+  String.fromCharCode.apply(null, array);
+
 export const initAction = async (initConfig: InitConfigType) => {
   const config = await startInquirerProcess<InitConfigType>(
     initConfig,
     initOptions,
   );
-  const { name, dry } = config;
+  const { name, dry, out, forceDelete } = config;
 
   const filesToCreate: Record<string, string> = {};
-  const currentDir = readdirSync(".");
+  const root = out.endsWith("/") ? out.slice(0, out.length - 1) : out;
+  const currentDir = readdirSync(root);
 
   let createNewProject = true;
   if (currentDir.includes(GODOT_PROJECT_FILE)) {
@@ -82,17 +114,17 @@ export const initAction = async (initConfig: InitConfigType) => {
     filesToCreate[GODOT_PROJECT_FILE] = getGodotProject(name);
   }
 
-  filesToCreate[PACKAGE_JSON_FILE] = getPackageJson(name, version);
-  filesToCreate[TS_CONFIG_FILE] = String.fromCharCode.apply(
-    null,
-    TSCONFIG_JSON,
+  filesToCreate[PACKAGE_JSON_FILE] = getPackageJson(
+    name,
+    version,
+    devDependencies["npm-run-all"],
+    devDependencies.typescript,
   );
-  filesToCreate[EXAMPLE_FILE] = String.fromCharCode.apply(null, EXAMPLE_TS);
-  filesToCreate[DECORATORS_FILE] = String.fromCharCode.apply(
-    null,
-    DECORATORS_BUNDLE_TS,
-  );
-  filesToCreate[GODOT_D_FILE] = String.fromCharCode.apply(null, GODOT_D_TS);
+  filesToCreate[TS_CONFIG_FILE] = byteArrayAsString(TSCONFIG_JSON);
+  filesToCreate[EXAMPLE_FILE] = byteArrayAsString(EXAMPLE_TS);
+  filesToCreate[DECORATORS_FILE] = byteArrayAsString(DECORATORS_BUNDLE_TS);
+  filesToCreate[GODOT_D_FILE] = byteArrayAsString(GODOT_D_TS);
+  filesToCreate[GITIGNORE] = byteArrayAsString(_GITIGNORE);
 
   if (dry) {
     const result = {
@@ -103,6 +135,6 @@ export const initAction = async (initConfig: InitConfigType) => {
     console.log(result);
     return result;
   } else {
-    generateFiles({ createNewProject, name, filesToCreate });
+    generateFiles({ createNewProject, name, root, forceDelete, filesToCreate });
   }
 };

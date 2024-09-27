@@ -1,9 +1,11 @@
 import { ProgramOptionsType } from "../../data";
-import { DryConfigType, dryRunOption } from "../../utils/shared";
+import { DryConfigType, dryRunOption, OutConfigType } from "../../utils/shared";
 
 export type InitConfigType = {
   name: string;
-} & DryConfigType;
+  forceDelete?: boolean;
+} & DryConfigType &
+  OutConfigType;
 
 export const initOptions: ProgramOptionsType[] = [
   {
@@ -15,13 +17,23 @@ export const initOptions: ProgramOptionsType[] = [
       input: { message: "Enter the name of your Game" },
     },
   },
+  {
+    name: "out",
+    defaultValue: ".",
+    description: "Relative path where project is written",
+  },
+  {
+    name: "forceDelete",
+    defaultValue: false,
+    description: "Removes project dir if it's already there",
+  },
   dryRunOption,
 ];
 
 export const DECORATORS_FILE = "src/decorators.bundle.ts";
 export const EXAMPLE_FILE = "src/example.ts";
 export const GODOT_D_FILE = "godot.d.ts";
+export const GITIGNORE = ".gitignore";
 export const TS_CONFIG_FILE = "tsconfig.json";
 export const PACKAGE_JSON_FILE = "package.json";
 export const GODOT_PROJECT_FILE: string = "project.godot";
-

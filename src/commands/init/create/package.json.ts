@@ -1,4 +1,9 @@
-export const getPackageJson = (name: string, version: string) =>
+export const getPackageJson = (
+  name: string,
+  version: string,
+  npmRunAll: string,
+  typescript: string,
+) =>
   JSON.stringify(
     {
       name: `${name}`,
@@ -13,8 +18,8 @@ export const getPackageJson = (name: string, version: string) =>
       },
       devDependencies: {
         "@godot-js/ts": `^${version}`,
-        "npm-run-all": "^4.1.5",
-        typescript: "^5.6.2",
+        "npm-run-all": `^${npmRunAll}`,
+        typescript: `^${typescript}`,
       },
       types: "./godot.d.ts",
     },
