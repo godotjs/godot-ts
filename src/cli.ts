@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
-import startProgram from "./program";
+import { startProgram } from "./program";
+import {programDescription, programName} from "./data";
 
-startProgram("@godot-js/ts", "CLI for using GodotJS with TypeScript");
+startProgram(programName, programDescription);

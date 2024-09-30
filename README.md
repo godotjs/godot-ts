@@ -18,32 +18,4 @@ Tool for using [GodotJS](https://github.com/godotjs/javascript) with TypeScript.
 
 ## API
 
-### Help
-
-```shell
-@godot-js/godot-ts --help
-```
-
-### Init
-
-Creates a new GodotJS project with TypeScript support
-
-```shell
-@godot-js/godot-ts init
-```
-
-### Build
-
-Build `*.ts` files once and minified
-
-```shell
-@godot-js/godot-ts build
-```
-
-### Watch
-
-Watching for changes in `*.ts` files and rebuilding on need
-
-```shell
-@godot-js/godot-ts watch
-```
+Look at the [docs](./docs/API.md).
