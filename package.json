@@ -19,12 +19,13 @@
     "test"
   ],
   "scripts": {
-    "prebuild": "tsx src/utils/prepare.ts",
-    "pretest": "tsx src/utils/prepare.ts",
     "build": "node esbuild.js",
+    "generate:api-docs": "tsx src/api-docs.ts",
     "lint": "eslint *.ts",
-    "prepare": "husky",
     "postinstall": "tsx src/utils/prepare.ts",
+    "prebuild": "tsx src/utils/prepare.ts",
+    "prepare": "husky",
+    "pretest": "tsx src/utils/prepare.ts",
     "test": "vitest run --no-file-parallelism"
   },
   "dependencies": {
@@ -44,6 +45,7 @@
     "find-versions-cli": "^5.0.0",
     "globals": "^15.9.0",
     "husky": "^9.0.11",
+    "markdown-table": "^3.0.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.3",
     "tsx": "^4.19.1",

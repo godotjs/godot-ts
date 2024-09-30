@@ -1,8 +1,8 @@
-import { program, Command } from "commander";
+import { Command, program } from "commander";
 import { godotTS } from "./data";
 
-const startProgram = (name: string, description: string) => {
-  program.name(name).description(description);
+export const getProgram = (name: string, description: string) => {
+  const mProgram = program.name(name).description(description);
 
   for (const command of godotTS) {
     const pCommand = new Command(command.name);
@@ -37,10 +37,12 @@ const startProgram = (name: string, description: string) => {
     }
 
     pCommand.action(command.action);
-    program.addCommand(pCommand);
+    mProgram.addCommand(pCommand);
   }
 
-  program.parse();
+  return mProgram;
 };
 
-export default startProgram;
+export const startProgram = (name: string, description: string) => {
+  getProgram(name, description).parse();
+};
