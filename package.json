@@ -31,7 +31,7 @@
   "dependencies": {
     "@inquirer/prompts": "^7.0.0",
     "commander": "^13.0.0",
-    "esbuild": "0.24.2",
+    "esbuild": "0.25.0",
     "glob": "^11.0.0",
     "rimraf": "^6.0.1"
   },
