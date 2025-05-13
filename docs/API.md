@@ -25,7 +25,7 @@ Creates a new GodotJS project with TypeScript support
 
 | long            | short | description                                            | required | defaultValue |
 | :-------------- | :---: | :----------------------------------------------------- | :------: | :----------- |
-| `--name`        |       | The name of your project                               |    `✅`   | `"MyGame"`   |
+| `--name`        |       | The name of your project                               |    `✅`   | `"my-game"`  |
 | `--out`         |       | Relative path where project is written                 |    `❌`   | `"."`        |
 | `--forceDelete` |       | Removes project dir if it's already there              |    `❌`   |              |
 | `--dry`         |       | Do a dry run with this command - prints/returns output |    `❌`   |              |

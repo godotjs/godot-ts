@@ -12,10 +12,8 @@ const buildResult = JSON.stringify({
     outExtension: { ".js": ".js" },
     format: "cjs",
     target: "esnext",
-    minify: undefined,
     outbase: "./scripts",
-    outdir: "scripts",
-    sourcemap: undefined,
+    outdir: "./.godot/GodotJS",
   },
   bundleOptions: {
     entryPoints: [],
@@ -25,8 +23,7 @@ const buildResult = JSON.stringify({
     format: "cjs",
     target: "esnext",
     outbase: "./scripts",
-    outdir: "scripts",
-    sourcemap: undefined,
+    outdir: "./.godot/GodotJS",
   },
 });
 
@@ -36,8 +33,6 @@ describe("config", () => {
       dry: true,
       config: "./test/esbuild/.config/godot-ts.json",
     });
-    delete result.bundleOptions.plugins;
-    delete result.classOptions.plugins;
     expect(JSON.stringify(result)).toEqual(buildResult);
   });
 });

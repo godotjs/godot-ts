@@ -10,7 +10,7 @@ export type InitConfigType = {
 export const initOptions: ProgramOptionsType[] = [
   {
     name: "name",
-    defaultValue: "MyGame",
+    defaultValue: "my-game",
     description: "The name of your project",
     required: true,
     inquirer: {
