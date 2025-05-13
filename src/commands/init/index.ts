@@ -1,8 +1,6 @@
 import {
-  DECORATORS_FILE,
   EXAMPLE_FILE,
   GITIGNORE,
-  GODOT_D_FILE,
   GODOT_PROJECT_FILE,
   InitConfigType,
   initOptions,
@@ -17,9 +15,7 @@ import { version, devDependencies } from "package.json";
 
 import {
   _GITIGNORE,
-  DECORATORS_BUNDLE_TS,
   EXAMPLE_TS,
-  GODOT_D_TS,
   TSCONFIG_JSON,
 } from "./generated";
 import { rimrafSync } from "rimraf";
@@ -28,10 +24,6 @@ const writeIgnoreFolders = (projectDir: string) => {
   const srcPath = `${projectDir}/src`;
   if (!existsSync(srcPath)) {
     mkdirSync(srcPath);
-  }
-  const gdIgnorePath = `${srcPath}/.gdignore`;
-  if (!existsSync(gdIgnorePath)) {
-    writeFileSync(gdIgnorePath, "");
   }
   const nodeModulesPath = `${projectDir}/node_modules`;
   if (!existsSync(nodeModulesPath)) {
@@ -74,7 +66,7 @@ const generateFiles = ({
 
   writeIgnoreFolders(projectDir);
 
-  Object.entries(filesToCreate).forEach(([fileName, content]) => {
+  for (const [fileName, content] of Object.entries(filesToCreate)) {
     try {
       const path = `${projectDir}/${fileName}`;
       if (!existsSync(path)) {
@@ -83,7 +75,7 @@ const generateFiles = ({
     } catch (e: unknown) {
       console.warn(e);
     }
-  });
+  }
 
   console.log("Generated files done, start by running:");
   if (createNewProject) {
@@ -117,13 +109,11 @@ export const initAction = async (initConfig: InitConfigType) => {
   filesToCreate[PACKAGE_JSON_FILE] = getPackageJson(
     name,
     version,
-    devDependencies["npm-run-all"],
+    devDependencies["npm-run-all2"],
     devDependencies.typescript,
   );
   filesToCreate[TS_CONFIG_FILE] = byteArrayAsString(TSCONFIG_JSON);
   filesToCreate[EXAMPLE_FILE] = byteArrayAsString(EXAMPLE_TS);
-  filesToCreate[DECORATORS_FILE] = byteArrayAsString(DECORATORS_BUNDLE_TS);
-  filesToCreate[GODOT_D_FILE] = byteArrayAsString(GODOT_D_TS);
   filesToCreate[GITIGNORE] = byteArrayAsString(_GITIGNORE);
 
   if (dry) {

@@ -33,7 +33,7 @@ const godotTsPlugin: Plugin = {
 };
 
 const options: BuildOptions = {
-  format: "esm",
+  format: "cjs",
   target: "esnext",
   plugins: [godotTsPlugin],
 };
@@ -42,12 +42,14 @@ export type ESBuildType = {
   src?: string;
   out?: string;
   minifyClasses?: boolean;
+  sourcemap?: boolean;
 };
 
 export const getESBuildOptions = async ({
   minifyClasses,
   src,
   out,
+  sourcemap,
 }: ESBuildType) => {
   const outbase = pathClean(src ?? defaultOutbase);
   const outdir = pathClean(out ?? defaultOutdir);
@@ -58,11 +60,12 @@ export const getESBuildOptions = async ({
   const entryPointsBundle = await glob(`${outbase}/**/*.bundle.ts`);
   const classOptions: BuildOptions = {
     entryPoints: entryPointsClasses,
-    outExtension: { ".js": ".mjs" },
+    outExtension: { ".js": ".js" },
     ...options,
     minify: minifyClasses,
     outbase,
     outdir,
+    sourcemap,
   };
 
   const bundleOptions: BuildOptions = {
@@ -73,6 +76,7 @@ export const getESBuildOptions = async ({
     ...options,
     outbase,
     outdir,
+    sourcemap,
   };
   return { bundleOptions, classOptions };
 };

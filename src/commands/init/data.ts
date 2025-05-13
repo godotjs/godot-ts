@@ -30,9 +30,7 @@ export const initOptions: ProgramOptionsType[] = [
   dryRunOption,
 ];
 
-export const DECORATORS_FILE = "src/decorators.bundle.ts";
 export const EXAMPLE_FILE = "src/example.ts";
-export const GODOT_D_FILE = "godot.d.ts";
 export const GITIGNORE = ".gitignore";
 export const TS_CONFIG_FILE = "tsconfig.json";
 export const PACKAGE_JSON_FILE = "package.json";

@@ -1,10 +1,9 @@
-import { signal } from "./decorators.bundle";
+import { Node } from "godot";
+import { test } from "./test.bundle";
 
-export default class MyClass extends godot.Node {
-  @signal
-  static readonly onReady: string;
-
+export default class MyClass extends Node {
   _ready(): void {
     console.log("test");
+    test();
   }
 }
