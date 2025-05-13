@@ -14,22 +14,31 @@ export const getProgram = (name: string, description: string) => {
 
     if (command.options) {
       for (const option of command.options) {
-        const short =
-          (option.short &&
-            (option.short?.startsWith("-")
-              ? option.short
-              : `-${option.short}`)) ||
-          `-${option.name.charAt(0)}`;
+        const short: string | undefined =
+          option.short &&
+          (option.short?.startsWith("-") ? option.short : `-${option.short}`);
 
         const isBoolean = typeof option.defaultValue == "boolean";
-        const pre = option.array ? "[" : isBoolean ? "" : "<";
-        const post = option.array ? "s...]" : isBoolean ? "" : ">";
+        const pre = option.array
+          ? "["
+          : isBoolean
+            ? ""
+            : option.required
+              ? "<"
+              : "[";
+        const post = option.array
+          ? "s...]"
+          : isBoolean
+            ? ""
+            : option.required
+              ? ">"
+              : "]";
 
         const long =
           option.long || `--${option.name} ${pre}${option.name}${post}`;
 
         pCommand.option(
-          `${short}, ${long}`,
+          short ? `${short}, ${long}` : `${long}`,
           option.description || "",
           option.defaultValue,
         );

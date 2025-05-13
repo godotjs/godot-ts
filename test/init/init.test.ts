@@ -10,14 +10,13 @@ const expectedFiles = [
   "node_modules",
   "src",
   ".gitignore",
-  "godot.d.ts",
   "package.json",
   "project.godot",
   "tsconfig.json",
 ];
 
 describe("init", () => {
-  allOut.forEach((out) => {
+  for (const out of allOut) {
     test(`test ${out}`, async () => {
       await initAction({
         name: gameName,
@@ -25,10 +24,10 @@ describe("init", () => {
         forceDelete: true,
       });
       const files: string[] = readdirSync(`${out}/${gameName}`);
-      expect(files).toHaveLength(7);
-      expectedFiles.forEach((file) => {
+      expect(files).toHaveLength(6);
+      for (const file of expectedFiles) {
         expect(files).toContain(file);
-      });
+      }
     });
-  });
+  }
 });

@@ -5,6 +5,7 @@ import { buildAction } from "./commands/build";
 import { initOptions } from "./commands/init/data";
 import { initAction } from "./commands/init";
 
+export const CONFIG_NAME = "godot-ts";
 export const programName = "@godot-js/ts";
 export const programDescription = "CLI for using GodotJS with TypeScript";
 

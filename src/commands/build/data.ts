@@ -9,7 +9,6 @@ export const buildOptions: ProgramOptionsType[] = [
   ...watchOptions,
   {
     name: "minifyClasses",
-    short: "mc",
     defaultValue: true,
     description: "Minifies GodotJS classes",
   },

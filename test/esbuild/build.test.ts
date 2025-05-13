@@ -5,14 +5,14 @@ import { rimrafSync } from "rimraf";
 
 const allSrc = ["./test/esbuild/src", "test/esbuild/src"];
 
-const allOut = [
-  "./test/esbuild/scripts",
-  "test/esbuild/scripts",
+const allBuildOut = [
+  "./test/esbuild/build/.godot/GodotJS",
+  "test/esbuild/build/.godot/GodotJS",
 ];
 
 describe("build", () => {
-  allSrc.forEach((src) => {
-    allOut.forEach((out) => {
+  for (const src of allSrc) {
+    for (const out of allBuildOut) {
       rimrafSync(out);
       test(`simple test ${src} ${out}`, async () => {
         await buildAction({
@@ -21,9 +21,9 @@ describe("build", () => {
         });
         const files: string[] = readdirSync(out);
         expect(files).toHaveLength(2);
-        expect(files[0]).toEqual("decorators.bundle.js");
-        expect(files[1]).toEqual("my-class.mjs");
+        expect(files[1]).toEqual("test.bundle.js");
+        expect(files[0]).toEqual("my-class.js");
       });
-    });
-  });
+    }
+  }
 });

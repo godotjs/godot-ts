@@ -1,20 +1,26 @@
 import { ProgramOptionsType } from "../../data";
-import { DryConfigType, dryRunOption, OutConfigType } from "../../utils/shared";
+import {
+  ConfigType,
+  DryConfigType,
+  dryRunOption,
+  OutConfigType,
+} from "../../utils/shared";
 
 export type WatchConfigType = {
   src?: string;
 } & DryConfigType &
-  OutConfigType;
+  OutConfigType &
+  ConfigType;
 
 export const watchOptions: ProgramOptionsType[] = [
   {
     name: "src",
-    defaultValue: "./src",
+    defaultValue: ".",
     description: "Relative path where *.ts files located",
   },
   {
     name: "out",
-    defaultValue: "./scripts/js/generated",
+    defaultValue: "./.godot/GodotJS",
     description: "Relative path where *.ts files are written",
   },
   dryRunOption,
