@@ -15,7 +15,7 @@ export const startInquirerProcess = async <T>(
       inquirer?.input &&
       (!config[option.name] || config[option.name] === option.defaultValue)
     ) {
-      config[option.name] = await input({
+      copyConfig[option.name] = await input({
         message: inquirer.input.message,
         default: option.defaultValue?.toString(),
         required: option.required,
