@@ -3,6 +3,7 @@ export const getPackageJson = (
   version: string,
   npmRunAll: string,
   typescript: string,
+  typesNode: string,
 ) =>
   JSON.stringify(
     {
@@ -18,6 +19,7 @@ export const getPackageJson = (
       },
       devDependencies: {
         "@godot-js/godot-ts": `^${version}`,
+        "@types/node": `${typesNode}`,
         "npm-run-all2": `${npmRunAll}`,
         typescript: `${typescript}`,
       },

@@ -13,11 +13,7 @@ import { getGodotProject } from "./create/project.godot";
 import { getPackageJson } from "./create/package.json";
 import { version, devDependencies } from "package.json";
 
-import {
-  _GITIGNORE,
-  EXAMPLE_TS,
-  TSCONFIG_JSON,
-} from "./generated";
+import { _GITIGNORE, EXAMPLE_TS, TSCONFIG_JSON } from "./generated";
 import { rimrafSync } from "rimraf";
 
 const writeIgnoreFolders = (projectDir: string) => {
@@ -111,6 +107,7 @@ export const initAction = async (initConfig: InitConfigType) => {
     version,
     devDependencies["npm-run-all2"],
     devDependencies.typescript,
+    devDependencies["@types/node"],
   );
   filesToCreate[TS_CONFIG_FILE] = byteArrayAsString(TSCONFIG_JSON);
   filesToCreate[EXAMPLE_FILE] = byteArrayAsString(EXAMPLE_TS);
