@@ -1,6 +1,6 @@
 import { glob } from "glob";
 import { BuildOptions } from "esbuild";
-import { pathClean } from "./path";
+import { resolve } from "path";
 
 const defaultOutdir = "./.godot/GodotJS";
 const defaultOutbase = ".";
@@ -23,8 +23,8 @@ export const getESBuildOptions = async ({
   out,
   sourcemap,
 }: ESBuildType) => {
-  const outbase = pathClean(src ?? defaultOutbase);
-  const outdir = pathClean(out ?? defaultOutdir);
+  const outbase = resolve(src ?? defaultOutbase);
+  const outdir = resolve(out ?? defaultOutdir);
 
   const entryPointsClasses = await glob(`${outbase}/**/*.ts`, {
     ignore: [`${outbase}/**/*.bundle.ts`, `**/*.d.ts`, `**/node_modules/**`],

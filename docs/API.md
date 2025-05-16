@@ -16,6 +16,18 @@ Build typescript files
 | `--dry`           |       | Do a dry run with this command - prints/returns output |    `❌`   |                      |
 | `--minifyClasses` |       | Minifies GodotJS classes                               |    `❌`   | `true`               |
 
+## generate
+
+Generate typescript utility files
+
+> You can use `generate.json` as a config file. 
+  By default it tries to search for the configuration otherwise use a correct path by passing `--config=./generate.json`.
+
+| long    | short | description                                     | required | defaultValue |
+| :------ | :---: | :---------------------------------------------- | :------: | :----------- |
+| `--src` |       | Relative path where script files located        |    `❌`   | `"."`        |
+| `--out` |       | Relative path where generated files are written |    `❌`   | `"."`        |
+
 ## init
 
 Creates a new GodotJS project with TypeScript support

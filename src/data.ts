@@ -4,6 +4,8 @@ import { buildOptions } from "./commands/build/data";
 import { buildAction } from "./commands/build";
 import { initOptions } from "./commands/init/data";
 import { initAction } from "./commands/init";
+import { generateOptions } from "./commands/generate/data";
+import { generateAction } from "./commands/generate";
 
 export const CONFIG_NAME = "godot-ts";
 export const programName = "@godot-js/ts";
@@ -48,5 +50,11 @@ export const godotTS: Command[] = [
     description: "Watch typescript files",
     options: watchOptions,
     action: watchAction,
+  },
+  {
+    name: "generate",
+    description: "Generate typescript utility files",
+    options: generateOptions,
+    action: generateAction,
   },
 ];
