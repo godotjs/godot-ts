@@ -108,6 +108,7 @@ export const initAction = async (initConfig: InitConfigType) => {
     devDependencies["npm-run-all2"],
     devDependencies.typescript,
     devDependencies["@types/node"],
+    devDependencies.nodemon,
   );
   filesToCreate[TS_CONFIG_FILE] = byteArrayAsString(TSCONFIG_JSON);
   filesToCreate[EXAMPLE_FILE] = byteArrayAsString(EXAMPLE_TS);
