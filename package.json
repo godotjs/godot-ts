@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@inquirer/prompts": "^7.0.0",
-    "commander": "^13.0.0",
+    "commander": "^14.0.0",
     "cosmiconfig": "^9.0.0",
     "esbuild": "0.25.4",
     "glob": "^11.0.0",
