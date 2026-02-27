@@ -16,7 +16,7 @@ jobs:
         uses: nmerget/npm-cache-action@main
 
       - name: ⏬ Download build
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: build
           path: dist
