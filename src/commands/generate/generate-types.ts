@@ -41,9 +41,11 @@ export const generateDTS = (gdScripts: GDScript[], outputPath: string) => {
       dtsContent += ` extends ${script.extends}`;
     }
     dtsContent += ` {\n`;
-
-    for (const { name, returnType, params } of script.functions) {
-      dtsContent += `  call(fn: "${name}"${params.length ? ", " : ""}${params.map(({ name, type }) => `${name}: ${type}`).join(",")}): ${returnType};\n`;
+    
+    if (script.functions) {
+      for (const { name, returnType, params } of script.functions) {
+        dtsContent += `  call(fn: "${name}"${params.length ? ", " : ""}${params.map(({ name, type }) => `${name}: ${type}`).join(",")}): ${returnType};\n`;
+      }
     }
 
     dtsContent += `}\n\n`;
