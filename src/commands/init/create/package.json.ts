@@ -10,7 +10,6 @@ export const getPackageJson = (
     {
       name: `${name}`,
       version: "0.0.0",
-      type: "module",
       scripts: {
         build: "godot-ts build",
         dev: "npm-run-all build generate -p watch watch-generate open-editor",
