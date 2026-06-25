@@ -8,10 +8,10 @@ import { generateGDScriptPathsFile } from "./generate-script";
 import { generateUtils } from "./generate-utils";
 
 export const generateAction = async (passedConfig: GenerateConfigType) => {
-  const { src, out } = passedConfig;
+  const { src, out, absolute } = passedConfig;
 
-  const resolvedSrc = resolve(src);
-  const resolvedOut = resolve(out);
+  const resolvedSrc = absolute ? resolve(src) : src;
+  const resolvedOut = absolute ? resolve(out) : out;
 
   const gdScriptPaths = await glob(`${resolvedSrc}/**/*.gd`, {
     ignore: [`**/.godot/**`],
